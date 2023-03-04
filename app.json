@@ -22,11 +22,29 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "bundler": "metro",
       "favicon": "./assets/images/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Photos access needed to select captured images.",
+          "cameraPermission": "Camera permission needed to capture images"
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "e087f9ab-6fb9-4f05-b7b3-43231d1700f6"
+      }
+    },
+    "owner": "cn7234x"
   }
 }

@@ -1,14 +1,29 @@
-import { StyleSheet } from 'react-native';
+import { Button, StyleSheet } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
 
 import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
 
 export default function TabTwoScreen() {
+
+  const getImages = async () => {
+    await ImagePicker.requestCameraPermissionsAsync();
+
+    let result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsMultipleSelection: true,
+      base64: true,
+      quality: 1,
+      exif: true
+    });
+
+    console.log(result);
+  }
+
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/two.tsx" />
+      <Button title='Select/Capture Images' onPress={getImages}/>
     </View>
   );
 }
@@ -16,8 +31,6 @@ export default function TabTwoScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   title: {
     fontSize: 20,
