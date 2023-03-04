@@ -25,7 +25,8 @@
       },
       "permissions": [
         "android.permission.RECORD_AUDIO"
-      ]
+      ],
+      "package": "com.mclaren.aeroops.tunnelapp"
     },
     "web": {
       "bundler": "metro",
