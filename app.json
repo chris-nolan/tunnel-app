@@ -24,9 +24,10 @@
         "backgroundColor": "#ffffff"
       },
       "permissions": [
-        "android.permission.RECORD_AUDIO"
+        "android.permission.RECORD_AUDIO",
+        "android.permission.CAMERA"
       ],
-      "package": "com.mclaren.aeroops.tunnelapp"
+      "package": "com.tunnelapp"
     },
     "web": {
       "bundler": "metro",

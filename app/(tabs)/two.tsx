@@ -1,10 +1,14 @@
-import { Button, StyleSheet } from 'react-native';
+import { Button, FlatList, Image, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
+import { useState } from 'react';
+import { ImagePickerAsset } from 'expo-image-picker';
 
 export default function TabTwoScreen() {
+
+  const [images, setImages] = useState<Array<ImagePickerAsset>>([]);
 
   const getImages = async () => {
     await ImagePicker.requestCameraPermissionsAsync();
@@ -17,16 +21,35 @@ export default function TabTwoScreen() {
       exif: true
     });
 
-    console.log(result);
+    if (result.assets) {
+      setImages((current) => {
+        if (result.assets) {
+          return [...current, ...result.assets];
+        }
+
+        return [...current];
+      });
+    }
   }
 
 
   return (
     <View style={styles.container}>
       <Button title='Select/Capture Images' onPress={getImages}/>
+      <FlatList
+        data={images}
+        renderItem={(item) => <Item item={item.item} />}
+        keyExtractor={item => item.uri}
+      />
     </View>
   );
 }
+
+const Item = ({item}: {item: ImagePickerAsset}) => (
+  <View>
+    <Image source={{uri: item.uri}} />
+  </View>
+)
 
 const styles = StyleSheet.create({
   container: {
