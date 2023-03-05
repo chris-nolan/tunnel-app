@@ -42,11 +42,5 @@
         }
       ]
     ],
-    "extra": {
-      "eas": {
-        "projectId": "e087f9ab-6fb9-4f05-b7b3-43231d1700f6"
-      }
-    },
-    "owner": "cn7234x"
   }
 }
